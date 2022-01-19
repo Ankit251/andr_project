@@ -1,17 +1,18 @@
 package com.example.atry;
 
 public class Items {
-    String firstName, offerprice, age, userName,pid;
+    String firstName, offerprice, age, userName,pid,img;
 
     public Items() {
     }
 
-    public Items(String firstName, String offerprice, String age, String userName,String pid) {
+    public Items(String firstName, String offerprice, String age, String userName,String pid,String img) {
         this.firstName = firstName;
         this.offerprice = offerprice;
         this.age = age;
         this.userName = userName;
         this.pid = pid;
+        this.img = img;
     }
 
     public String getFirstName() {
@@ -53,5 +54,14 @@ public class Items {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

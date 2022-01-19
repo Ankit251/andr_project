@@ -1,16 +1,17 @@
 package com.example.atry;
 
 public class Users {
-    String firstName, lastName, age, userName;
+    String firstName, lastName, age, userName,img;
 
     public Users() {
     }
 
-    public Users(String firstName, String lastName, String age, String userName) {
+    public Users(String firstName, String lastName, String age, String userName,String img) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.userName = userName;
+        this.img = img;
     }
 
     public String getFirstName() {
