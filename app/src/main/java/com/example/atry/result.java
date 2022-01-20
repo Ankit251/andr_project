@@ -25,7 +25,7 @@ public class result extends AppCompatActivity {
     TextView res;
     DatabaseReference reference;
     Button btn;
-    EditText nm;
+    EditText nm,of,or,de;
     ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,8 @@ public class result extends AppCompatActivity {
 
         res = findViewById(R.id.rst);
         nm = findViewById(R.id.pname);
+        of = findViewById(R.id.offerprice);
+        or=findViewById(R.id.originalprice);
         Intent intent = getIntent();
         String str = intent.getStringExtra("qrr");
         img =  findViewById(R.id.imageView4);
@@ -65,9 +67,11 @@ public class result extends AppCompatActivity {
                         Toast.makeText(result.this,"Fetched successfully",Toast.LENGTH_SHORT).show();
                         DataSnapshot dataSnapshot = task.getResult();
                         String pn = String.valueOf(dataSnapshot.child("firstName").getValue());
+                        String ofp = String.valueOf(dataSnapshot.child("lastName").getValue());
                         String im = String.valueOf(dataSnapshot.child("img").getValue());
                         Uri imm = Uri.parse(im);
                         nm.setText(pn);
+                        of.setText(ofp);
 
                         Picasso.get().load(im).into(img);
 

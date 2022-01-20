@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.atry.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 public class Fetch extends AppCompatActivity {
-    ActivityMainBinding binding;
+
     TextView firstname, lastname, agee, username, pi;
     String firstName,lastName,age,userName,pd,imagg;
     FirebaseDatabase db;

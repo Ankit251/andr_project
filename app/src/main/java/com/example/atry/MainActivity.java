@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.iammert.library.readablebottombar.ReadableBottomBar;
 
+import java.util.Scanner;
+
 public class MainActivity extends AppCompatActivity {
 
     ReadableBottomBar rvb;
@@ -47,15 +49,19 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
 
                         Toast.makeText(MainActivity.this,"Search selected",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity3.class));
+                        startActivity(new Intent(getApplicationContext(),Fetch.class));
                         break;
                     case 2:
                         Toast.makeText(MainActivity.this,"Scanner selected",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),scanner.class));
+                        startActivity(new Intent(getApplicationContext(),Fetch.class));
                         break;
                     case 3:
                         Toast.makeText(MainActivity.this,"Profile selected",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),Fetch.class));
+                        startActivity(new Intent(getApplicationContext(), scanner.class));
+                        break;
+                    case 4:
+                        Toast.makeText(MainActivity.this,"Account",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
                         break;
                 }
             }

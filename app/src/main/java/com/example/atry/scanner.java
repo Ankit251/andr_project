@@ -40,11 +40,15 @@ public class scanner extends AppCompatActivity {
                         break;
                     case 2:
                         Toast.makeText(scanner.this,"Scanner selected",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),scannerView.class));
+                        startActivity(new Intent(getApplicationContext(),MainActivity3.class));
                         break;
                     case 3:
                         Toast.makeText(scanner.this,"Profile selected",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),Fetch.class));
+                        break;
+                    case 4:
+                        Toast.makeText(scanner.this,"Account",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
                         break;
                 }
             }

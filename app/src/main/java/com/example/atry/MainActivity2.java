@@ -3,9 +3,11 @@ package com.example.atry;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,52 +25,64 @@ public class MainActivity2 extends AppCompatActivity {
     DatabaseReference reference;
     Button btn;
     TextView user;
-
+    FirebaseDatabase db;
+    EditText txt1,txt2,txt3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main2);
-        user = findViewById(R.id.data);
-        btn = (Button) findViewById(R.id.button);
+
+        btn = findViewById(R.id.btnSignUp);
+        user = findViewById(R.id.tvSignIn);
+        txt1 = findViewById(R.id.ug);
+        txt2 = findViewById(R.id.eml);
+        txt3 = findViewById(R.id.pwr);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String username = user.getText().toString();
 
-                if(!username.isEmpty()){
-                    readData(username);
-                }
-                else{
-                    Toast.makeText(MainActivity2.this,"Please Enter user name",Toast.LENGTH_SHORT).show();
-                }
             }
         });
-    }
-
-    public void readData(String username){
-        reference = FirebaseDatabase.getInstance().getReference("Employee");
-        reference.child(username).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        user.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if(task.isSuccessful()){
-                    if(task.getResult().exists()){
-                        Toast.makeText(MainActivity2.this,"Successfully read",Toast.LENGTH_SHORT).show();
-                        DataSnapshot dataSnapshot =task.getResult();
-                        String Nm = String.valueOf(dataSnapshot.child("name").getValue());
-                        String posi = String.valueOf(dataSnapshot.child("position").getValue());
-                        TextView name =findViewById(R.id.name);
-                        name.setText(Nm);
-                        TextView pos =findViewById(R.id.Position);
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Logi.class);
+                startActivity(intent);
+            }
+        });
 
-                        pos.setText(posi);
-                    }else{
-                        Toast.makeText(MainActivity2.this,"User doesn't exist",Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(MainActivity2.this,"Failed to retrieve data",Toast.LENGTH_SHORT).show();
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username = txt1.getText().toString();
+                String email = txt2.getText().toString();
+                String password = txt3.getText().toString();
+
+                if(!username.isEmpty() && !email.isEmpty() && !password.isEmpty()){
+                    Users users = new Users(username,email,password);
+
+                    db = FirebaseDatabase.getInstance();
+                    reference = db.getReference("usrs");
+
+
+                    reference.child(username).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                            txt1.setText("");
+                            txt2.setText("");
+                            txt3.setText("");
+                            Toast.makeText(MainActivity2.this,"Successfuly Updated", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
                 }
             }
         });
+
     }
+
+
 }

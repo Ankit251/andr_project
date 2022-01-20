@@ -84,37 +84,37 @@ public class MainActivity3 extends AppCompatActivity {
                         });
                     }
                 });
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 firstName = firstname.getText().toString();
-                 lastName = lastname.getText().toString();
-                 age = agee.getText().toString();
-                 userName = username.getText().toString();
-
-
-                if (!firstName.isEmpty() && !lastName.isEmpty() && !age.isEmpty() && !userName.isEmpty()){
-                    Users users = new Users(firstName,lastName,age,userName,imge);
-
-                    db = FirebaseDatabase.getInstance();
-                    reference = db.getReference("Users");
-
-                    reference.child(userName).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-                            firstname.setText("");
-                            lastname.setText("");
-                            agee.setText("");
-                            username.setText("");
-                            Toast.makeText(MainActivity3.this,"Successfuly Updated", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                }
-
-            }
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                 firstName = firstname.getText().toString();
+//                 lastName = lastname.getText().toString();
+//                 age = agee.getText().toString();
+//                 userName = username.getText().toString();
+//
+//
+//                if (!firstName.isEmpty() && !lastName.isEmpty() && !age.isEmpty() && !userName.isEmpty()){
+//                    Users users = new Users(firstName,lastName,age,userName,imge);
+//
+//                    db = FirebaseDatabase.getInstance();
+//                    reference = db.getReference("Users");
+//
+//                    reference.child(userName).setValue(users).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//
+//                            firstname.setText("");
+//                            lastname.setText("");
+//                            agee.setText("");
+//                            username.setText("");
+//                            Toast.makeText(MainActivity3.this,"Successfuly Updated", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                    });
+//                }
+//
+//            }
+//        });
 
         btnn.setOnClickListener(new View.OnClickListener() {
             @Override
