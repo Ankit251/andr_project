@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.atry.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main2);
 
-        btn = findViewById(R.id.btnSignUp);
+        btn = findViewById(R.id.btn);
         user = findViewById(R.id.tvSignIn);
         txt1 = findViewById(R.id.ug);
         txt2 = findViewById(R.id.eml);

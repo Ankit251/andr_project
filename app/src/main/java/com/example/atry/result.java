@@ -23,10 +23,11 @@ import com.squareup.picasso.Picasso;
 public class result extends AppCompatActivity {
 
     TextView res;
-    DatabaseReference reference;
-    Button btn;
+    DatabaseReference reference,referencee;
+    Button btn,btn2;
     EditText nm,of,or,de;
     ImageView img;
+    FirebaseDatabase db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +37,22 @@ public class result extends AppCompatActivity {
         nm = findViewById(R.id.pname);
         of = findViewById(R.id.offerprice);
         or=findViewById(R.id.originalprice);
+        de = findViewById(R.id.description);
+        btn2 = findViewById(R.id.cart);
         Intent intent = getIntent();
         String str = intent.getStringExtra("qrr");
         img =  findViewById(R.id.imageView4);
         res.setText(str);
+
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addtocart();
+            }
+        });
+
+
 
         btn = (Button) findViewById(R.id.sd);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +70,10 @@ public class result extends AppCompatActivity {
 
     }
 
+
+
+
+
     public void readData(String dt){
         reference = FirebaseDatabase.getInstance().getReference("Items");
         reference.child(dt).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -69,9 +86,13 @@ public class result extends AppCompatActivity {
                         String pn = String.valueOf(dataSnapshot.child("firstName").getValue());
                         String ofp = String.valueOf(dataSnapshot.child("lastName").getValue());
                         String im = String.valueOf(dataSnapshot.child("img").getValue());
+                        String orp = String.valueOf(dataSnapshot.child("age").getValue());
+                        String dep = String.valueOf(dataSnapshot.child("userName").getValue());
                         Uri imm = Uri.parse(im);
                         nm.setText(pn);
                         of.setText(ofp);
+                        or.setText(orp);
+                        de.setText(dep);
 
                         Picasso.get().load(im).into(img);
 
@@ -84,5 +105,28 @@ public class result extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void addtocart(){
+        String ofpp = of.getText().toString();
+        String nmpp = nm.getText().toString();
+
+        if(!ofpp.isEmpty() && !nmpp.isEmpty()){
+            Cart cart = new Cart(ofpp,nmpp);
+
+            db = FirebaseDatabase.getInstance();
+            referencee = db.getReference("CART");
+
+            referencee.child(nmpp).setValue(cart).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+
+
+                    Toast.makeText(result.this,"Successfuly Updated", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }
     }
 }

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
 
                         Toast.makeText(MainActivity.this,"Search selected",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),Fetch.class));
+                        startActivity(new Intent(getApplicationContext(),Showcart.class));
                         break;
                     case 2:
                         Toast.makeText(MainActivity.this,"Scanner selected",Toast.LENGTH_SHORT).show();
