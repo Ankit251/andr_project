@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Try">
         <activity
+            android:name=".verifyotp"
+            android:exported="false" />
+        <activity
+            android:name=".entermobilenumber"
+            android:exported="false" />
+        <activity
             android:name=".Showcart"
             android:exported="false" />
         <activity
