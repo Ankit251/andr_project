@@ -19,10 +19,25 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/dbimg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="first name"
+                android:text="Offer Price"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"/>
@@ -47,7 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="first name"
+                android:text="Name of the product:"
                 android:textColor="@color/black"
                 android:textSize="26sp"
                 android:textStyle="bold"/>

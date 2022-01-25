@@ -26,8 +26,9 @@ public class result extends AppCompatActivity {
     DatabaseReference reference,referencee;
     Button btn,btn2;
     EditText nm,of,or,de;
-    ImageView img;
+    ImageView img,img2;
     FirebaseDatabase db;
+    Uri imm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class result extends AppCompatActivity {
         String str = intent.getStringExtra("qrr");
         img =  findViewById(R.id.imageView4);
         res.setText(str);
-
+        img2 = findViewById(R.id.dbimg);
 
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +89,7 @@ public class result extends AppCompatActivity {
                         String im = String.valueOf(dataSnapshot.child("img").getValue());
                         String orp = String.valueOf(dataSnapshot.child("age").getValue());
                         String dep = String.valueOf(dataSnapshot.child("userName").getValue());
-                        Uri imm = Uri.parse(im);
+                        imm = Uri.parse(im);
                         nm.setText(pn);
                         of.setText(ofp);
                         or.setText(orp);
@@ -110,9 +111,11 @@ public class result extends AppCompatActivity {
     public void addtocart(){
         String ofpp = of.getText().toString();
         String nmpp = nm.getText().toString();
+        String imag = imm.toString();
 
         if(!ofpp.isEmpty() && !nmpp.isEmpty()){
-            Cart cart = new Cart(ofpp,nmpp);
+
+            Cart cart = new Cart(ofpp,nmpp,imag);
 
             db = FirebaseDatabase.getInstance();
             referencee = db.getReference("CART");
